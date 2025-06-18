@@ -1,0 +1,6 @@
+{
+  "name": "CircadianGlow",
+  "description": "An intelligent lighting control application that harmonizes your home's ambiance with natural circadian rhythms, featuring AI-powered recommendations by Gemini for optimal well-being and productivity.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
