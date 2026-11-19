@@ -50,6 +50,8 @@ android {
         compose = true
         buildConfig = true
     }
+    // Fail release builds on APIs newer than minSdk (e.g. Java 21 List.reversed(), missing before Android 15).
+    lint { fatal += "NewApi" }
     testOptions { unitTests { isReturnDefaultValues = true; isIncludeAndroidResources = true } }
     sourceSets { getByName("test").assets.srcDir("$projectDir/schemas") }
 }

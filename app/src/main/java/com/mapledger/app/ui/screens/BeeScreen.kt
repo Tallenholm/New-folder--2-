@@ -284,7 +284,7 @@ private fun GoalsTab(vm: BeeViewModel) {
                 TextButton(onClick = { edit = HistoricalGoal(weekStart = Ledger.periodStart(LocalDate.now(), Ledger.Period.WEEK).toEpochDay(), distanceKm = 0.0) }) { Text("Add week") }
             }
         }
-        items(goals.reversed(), key = { it.id }) { g ->
+        items(goals.sortedByDescending { it.weekStart }, key = { it.id }) { g ->
             val start = LocalDate.ofEpochDay(g.weekStart)
             val gpsMi = trips.filter { it.status == TripStatus.COMPLETED && it.source == RecordSource.LIVE_GPS }
                 .filter { val d = Fmt.localDate(it.startTime); !d.isBefore(start) && d.isBefore(start.plusDays(7)) }

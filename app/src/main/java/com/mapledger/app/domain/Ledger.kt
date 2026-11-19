@@ -199,7 +199,7 @@ object Ledger {
     /** Cash-basis profitability report. Expenses here are actual cash spent (not the tax deduction). */
     fun report(p: Period, trips: List<Trip>, expenses: List<Expense>, payments: List<Payment>, zone: ZoneId = ZoneId.systemDefault()): List<PeriodRow> {
         val keys = (trips.map { localDate(it.startTime, zone) } + expenses.map { localDate(it.date, zone) } + payments.map { localDate(it.date, zone) })
-            .map { periodStart(it, p) }.toSortedSet().reversed()
+            .map { periodStart(it, p) }.distinct().sortedDescending()
         return keys.map { k ->
             val tt = trips.filter { periodStart(localDate(it.startTime, zone), p) == k }
             val ee = expenses.filter { periodStart(localDate(it.date, zone), p) == k }
